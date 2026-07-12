@@ -53,6 +53,7 @@ CURRENT_TODOS: list[dict] = []
 def _parse_frontmatter(text: str) -> tuple[dict, str]:
     """Parse YAML frontmatter from SKILL.md. Returns (meta, body)."""
     if not text.startswith("---"):
+
         return {}, text
     parts = text.split("---", 2)
     if len(parts) < 3:
@@ -123,7 +124,7 @@ def run_bash(command: str) -> str:
     try:
         r = subprocess.run(command, shell=True, cwd=WORKDIR,
                            capture_output=True, text=True, timeout=120)
-        out = (r.stdout + r.stderr).strip()
+        out = ((r.stdout or "") + (r.stderr or "")).strip()
         return out[:50000] if out else "(no output)"
     except subprocess.TimeoutExpired:
         return "Error: Timeout (120s)"
