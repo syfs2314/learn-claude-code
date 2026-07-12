@@ -120,7 +120,7 @@ def run_glob(pattern: str) -> str:
 # ═══════════════════════════════════════════════════════════
 #  NEW in s05: todo_write tool — plan only, no execution
 # ═══════════════════════════════════════════════════════════
-
+# 检查todo列表是否符合要求，返回规范化后的todo列表和错误信息
 def _normalize_todos(todos):
     if isinstance(todos, str):
         try:

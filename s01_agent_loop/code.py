@@ -101,6 +101,7 @@ def agent_loop(messages: list):
         for block in response.content:
             if block.type == "tool_use":
                 print(f"\033[33m$ {block.input['command']}\033[0m")
+                #把bush 的输出加进去
                 output = run_bash(block.input["command"])
                 print(output[:200])
                 results.append({
